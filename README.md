@@ -1,6 +1,6 @@
 # Git flow
 # Documentation
-
+* [Quy trình `git flow GDC`](#git-flow-gdc)
 * [Nguyên tắc `git flow`](#nguyên-tắc-git-flow)
 * [Các câu lệnh cần biết để sử dụng trong bài viết](#các-câu-lệnh-cần-biết-để-sử-dụng-trong-bài-viết)
 * [Chương 1: Các khái niệm cần biết cần hiểu](#chương-1-các-khái-niệm-cần-biết-cần-hiểu)
@@ -28,7 +28,34 @@
     - [Sửa commit gần nhất với git commit `--amend`](#sửa-commit-gần-nhất-với-git-commit---amend)
     - [Gộp commit với `git rebase`](#gộp-commit-với-git-rebase)
 
+# Git flow GDC
+```
+-----------Fix bug----------------
+git checkout master
+git branch -b bugfix/JIRA-1234_content
+git add *
+git commit -m "fix bug message"
+git push origin bugfix/JIRA-1234_content
 
+---Trường hợp muốn ghi đè commit trước
+    git commmit --amend ->sửa nội dung commit cũ
+    git push origin -f bugfix/JIRA-1234_content
+
+---Trường hợp muốn pull từ master không muốn có commit mới
+    git pull origin master --rebase
+    -> fix conflic nếu có
+    git rebase --continue
+    git push origin -f bugfix/JIRA-1234_content
+
+-> create pull request merge to dev
+-> create pull request merge to stage
+---create branch release from dev
+git checkout -b release/JIRA-1234_content( base from master)
+git merge bugfix/JIRA-1234_content
+git push origin release/JIRA-1234_content
+-> create pull request merge to prod
+
+````
 # Nguyên tắc `git flow`
 0. Luôn lấy code mới nhất từ nhánh base (`develop`) trước khi tạo `Merge / Pull request` để fix conflict (nếu có) 
 1. Tạo merge request chỉ có 1 commit duy nhất

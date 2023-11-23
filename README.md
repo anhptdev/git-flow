@@ -32,10 +32,10 @@
 ```
 -----------Fix bug----------------
 git checkout prod
-git branch -b FEATURE-VDCMPLUS-ID-bugfix_content (create branch from JIRA)
+git branch -b FEATURE-VDCMPLUS-ID-name (create branch from JIRA)
 git add *
 git commit -m "fix bug message"
-git push origin FEATURE-VDCMPLUS-ID-bugfix_content
+git push origin FEATURE-VDCMPLUS-ID-name
 
 ---Trường hợp muốn ghi đè commit trước
     git commmit --amend ->sửa nội dung commit cũ
@@ -47,10 +47,16 @@ git push origin FEATURE-VDCMPLUS-ID-bugfix_content
     git rebase --continue
     git push origin -f FEATURE-VDCMPLUS-ID-bugfix_content
 
+---Trường hợp 2 task liên quan đến nhau
+   tạo ra 1 nhánh chung
+    git branch -b FEATURE-VDCMPLUS-ID-chung
+    merge 2 task liên quan vào branch chung
+ 
+
 -> create pull request merge to dev
 -> create pull request merge to stage
----create branch release from dev
-git checkout -b FEATURE-VDCMPLUS-ID-release_content( base from master)
+---create branch release from prod
+git checkout -b FEATURE-VDCMPLUS-ID-release_YYYYMMdd( base from prod, tao tu JIRA)
 git merge bugfix/JIRA-1234_content
 git push origin release/JIRA-1234_content
 -> create pull request merge to prod

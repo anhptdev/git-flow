@@ -31,7 +31,7 @@
 # Git flow GDC
 ```
 -----------Fix bug----------------
-git checkout master
+git checkout prod
 git branch -b FEATURE-VDCMPLUS-ID-bugfix_content (create branch from JIRA)
 git add *
 git commit -m "fix bug message"
